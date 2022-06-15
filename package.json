@@ -1,0 +1,28 @@
+{
+  "name": "dk-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npx ts-node index.ts",
+    "prettier": "prettier --config .prettierrc './**/*.ts' --write"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@binance/connector": "^1.10.0",
+    "detect-rpi": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
+    "prettier": "^2.6.2",
+    "qrcode-terminal": "^0.12.0",
+    "uuid": "^8.3.2",
+    "whatsapp-web.js": "^1.16.6"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@types/uuid": "^8.3.4",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
+  }
+}
