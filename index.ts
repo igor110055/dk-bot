@@ -78,7 +78,7 @@ process.stdout.write('\x1Bc');
             `WARNING! NEW INVEST HAS STARTED!\n\nAlgo params: {\n    symbol: ${pairSymbol}\n` +
                 `    direction: ${direction}\n    start price: ${latestPrice}\n` +
                 `    start amount: ${initialAmount}\n    reinvest index: ${reinvestIndex}\n    take profit index: ${takeProfitIndex}\n` +
-                `    amount index: ${amountIndex}\n    max steps: ${maxNumberOfSteps}\n}`
+                `    amount index: ${amountIndex}\n    max steps: ${maxNumberOfSteps}\n}\n`
         );
 
         /*
@@ -96,7 +96,7 @@ process.stdout.write('\x1Bc');
             quantity: machine.initialAmount
         });
         printAndNotify(
-            `New Market Order Created ${machine.pairSymbol}: ${latestPrice}, ${machine.initialAmount}`
+            `New Market Order Created ${machine.pairSymbol}: ${machine.direction}, ${latestPrice}, ${machine.initialAmount}`
         );
 
         let step = 0;
@@ -141,7 +141,7 @@ process.stdout.write('\x1Bc');
                 quantity: invest.takeProfitAmount
             });
             printAndNotify(
-                `New Take Profit Order Created ${machine.pairSymbol}: ${invest.takeProfitPrice}, ${invest.takeProfitAmount}`
+                `New Take Profit Order Created ${machine.pairSymbol}: ${invest.takeProfitPrice}, ${invest.takeProfitAmount}\n`
             );
 
             let reinvest;

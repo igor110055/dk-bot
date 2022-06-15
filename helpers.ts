@@ -231,16 +231,18 @@ export const borrowAsset = async ({
             throw Error('[borrowAsset] Cannot find user asset');
         }
         const borrowedAmount = parseFloat(asset.borrowed);
+        const freeAmount = parseFloat(asset.free);
 
-        console.log(`Already borrowed: ${asset.borrowed}`);
+        console.log(`Already borrowed: ${borrowedAmount}`);
+        console.log(`Free to borrowed: ${freeAmount}`);
+        return;
 
-        if (amount <= borrowedAmount) {
+        if (amount <= freeAmount) {
             console.log(`Not need to borrow extra\n`);
             return amount;
         }
 
-        const amountToBorrow =
-            amount - borrowedAmount > maxLimit ? maxLimit : amount - borrowedAmount;
+        const amountToBorrow = amount > maxLimit ? maxLimit : amount;
         const { data } = await client.marginBorrow(symbol, amountToBorrow);
 
         console.log(`Borrowing ${amountToBorrow}\n`);
@@ -291,7 +293,7 @@ export const repayAsset = async ({
 
         const amountToRepay = amount && amount < toRepayAmount ? amount : toRepayAmount;
 
-        if ((Math.round(amountToRepay * 10000) / 10000) === 0) {
+        if (Math.round(amountToRepay * 10000) / 10000 === 0) {
             console.log(`Nothing to repay\n`);
             return 0;
         }
