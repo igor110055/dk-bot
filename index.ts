@@ -96,7 +96,7 @@ process.stdout.write('\x1Bc');
             quantity: machine.initialAmount
         });
         printAndNotify(
-            `New Market Order Created ${machine.pairSymbol}: ${machine.direction}, ${latestPrice}, ${machine.initialAmount}`
+            `New Market Order Created ${machine.pairSymbol}: ${machine.direction}, ${latestPrice}, ${machine.initialAmount}\n`
         );
 
         let step = 0;
