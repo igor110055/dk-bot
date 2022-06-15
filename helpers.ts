@@ -234,8 +234,7 @@ export const borrowAsset = async ({
         const freeAmount = parseFloat(asset.free);
 
         console.log(`Already borrowed: ${borrowedAmount}`);
-        console.log(`Free to borrowed: ${freeAmount}`);
-        return;
+        console.log(`Free to use: ${freeAmount}`);
 
         if (amount <= freeAmount) {
             console.log(`Not need to borrow extra\n`);
