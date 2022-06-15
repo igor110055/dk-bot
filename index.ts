@@ -126,7 +126,7 @@ process.stdout.write('\x1Bc');
                 quantity: invest.reinvestAmount
             });
             printAndNotify(
-                `New Reinvest Order Created ${machine.pairSymbol}: ${invest.reinvestPrice}, ${invest.reinvestAmount}`
+                `New Reinvest Order Created ${machine.pairSymbol}: ${invest.reinvestPrice}, ${invest.reinvestAmount}\n`
             );
 
             /*
@@ -177,7 +177,7 @@ process.stdout.write('\x1Bc');
                     pairSymbol: ETHBUSD,
                     orderId: takeProfitOrder?.orderId || -1
                 });
-                printAndNotify(`Reinvest!`);
+                printAndNotify(`Reinvest!\n`);
             }
             if (takeProfit?.status === Filled) {
                 /*
@@ -189,7 +189,7 @@ process.stdout.write('\x1Bc');
                         invest.takeProfitPrice
                     }, an average price is ${0}\n`
                 );
-                printAndNotify(`Take Profit!`);
+                printAndNotify(`Take Profit!\n`);
 
                 /*
                  * CANCEL REINVEST ORDER
