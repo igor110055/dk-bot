@@ -40,6 +40,8 @@ process.stdout.write('\x1Bc');
     const maxInvestValue = 18000;
 
     while (true) {
+        printAndNotify(`WARNING! NEW INVEST HAS STARTED!\n`);
+
         /*
          * Repay debt if exists
          */
@@ -75,7 +77,7 @@ process.stdout.write('\x1Bc');
         });
 
         printAndNotify(
-            `WARNING! NEW INVEST HAS STARTED!\n\nAlgo params: {\n    symbol: ${pairSymbol}\n` +
+            `\nAlgo params: {\n    symbol: ${pairSymbol}\n` +
                 `    direction: ${direction}\n    start price: ${latestPrice}\n` +
                 `    start amount: ${initialAmount}\n    reinvest index: ${reinvestIndex}\n    take profit index: ${takeProfitIndex}\n` +
                 `    amount index: ${amountIndex}\n    max steps: ${maxNumberOfSteps}\n}\n`
@@ -197,6 +199,12 @@ process.stdout.write('\x1Bc');
                     }, an average price is ${0}\n`
                 );
                 printAndNotify(`Take Profit!\n`);
+
+                /*
+                 * CANCEL REINVEST ORDER
+                 */
+                if (machine.direction === Sell) {
+                }
 
                 /*
                  * CANCEL REINVEST ORDER
