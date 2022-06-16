@@ -33,7 +33,7 @@ process.stdout.write('\x1Bc');
     const pairSymbol = ETHBUSD;
     const reinvestIndex = 0.055;
     const takeProfitIndex = 0.01;
-    const initialAmount = 0.1;
+    const initialAmount = 0.5;
     const direction = Sell;
     const maxNumberOfSteps = 4;
     const amountIndex = 0.5;
