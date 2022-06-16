@@ -38,6 +38,7 @@ process.stdout.write('\x1Bc');
     const maxNumberOfSteps = 4;
     const amountIndex = 0.5;
     const maxInvestValue = 18000;
+    const numberOfStepsForRiskInvestmentsWarning = 5;
 
     while (true) {
         printAndNotify(`WARNING! NEW INVEST HAS STARTED!\n`);
@@ -77,7 +78,7 @@ process.stdout.write('\x1Bc');
         });
 
         printAndNotify(
-            `\nAlgo params: {\n    symbol: ${pairSymbol}\n` +
+            `Algo params: {\n    symbol: ${pairSymbol}\n` +
                 `    direction: ${direction}\n    start price: ${latestPrice}\n` +
                 `    start amount: ${initialAmount}\n    reinvest index: ${reinvestIndex}\n    take profit index: ${takeProfitIndex}\n` +
                 `    amount index: ${amountIndex}\n    max steps: ${maxNumberOfSteps}\n}\n`
@@ -112,6 +113,14 @@ process.stdout.write('\x1Bc');
             const invest = machine.invests[step];
             console.log(`Invest step is: ${step}`);
             console.log(`Invest is ${JSON.stringify(invest, null, 4)}\n`);
+
+            /*
+             * WARNING IF INVESTMENTS GET RISKY
+             */
+            if (step + 1 >= numberOfStepsForRiskInvestmentsWarning) {
+                console.log(`WARNING! Invests are getting risky! number of steps: ${step}`);
+            }
+
             step++;
 
             /*
