@@ -7,7 +7,7 @@ import {
     placeMarketOrder,
     repayAsset
 } from './helpers';
-import { Buy, ETHBUSD, Filled, Limit, Sell, ETH, Market } from './types';
+import { Buy, ETHBUSD, Filled, Canceled, Limit, Sell, ETH, Market } from './types';
 import { buildTradingMachine, getOppositeDirection, sleep } from './logic';
 import { getWhatsAppCLient } from './bot';
 
@@ -148,7 +148,7 @@ process.stdout.write('\x1Bc');
             let reinvest;
             let takeProfit;
 
-            while (reinvest?.status !== Filled && takeProfit?.status !== Filled) {
+            do {
                 /*
                  * WAIT
                  */
@@ -162,12 +162,18 @@ process.stdout.write('\x1Bc');
                     pairSymbol: ETHBUSD,
                     orderId: reinvestOrder?.orderId || -1
                 });
+
                 takeProfit = await getOrdersById({
                     client,
                     pairSymbol: ETHBUSD,
                     orderId: takeProfitOrder?.orderId || -1
                 });
-            }
+
+                if (reinvest?.status === Canceled || takeProfit?.status === Canceled) {
+                    printAndNotify(`Error! One of limit order has been canceled!\n`);
+                    break;
+                }
+            } while (reinvest?.status !== Filled && takeProfit?.status !== Filled);
 
             if (reinvest?.status === Filled) {
                 /*
@@ -204,6 +210,7 @@ process.stdout.write('\x1Bc');
             }
 
             if (step >= machine.maxNumberOfSteps) {
+                printAndNotify(`ATTENTION ALGO REACHED MAX NUMBER OF STEPS!\n`);
                 break;
             }
         } while (true);

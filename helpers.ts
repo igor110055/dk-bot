@@ -63,7 +63,9 @@ export const placeMarketOrder = async ({
             newOrderRespType: 'FULL'
         });
 
-        console.log(`Placing ${quantity} of ${pairSymbol}, orderId: ${data.orderId}\n`);
+        console.log(
+            `Placing ${quantity} of ${pairSymbol}, price${data.price}, orderId: ${data.orderId}\n`
+        );
         return data;
     } catch (e) {
         console.log(
@@ -101,7 +103,9 @@ export const placeLimitOrder = async ({
             timeInForce: 'GTC'
         });
 
-        console.log(`Placing ${quantity} of ${pairSymbol}, orderId: ${data.orderId}\n`);
+        console.log(
+            `Placing ${quantity} of ${pairSymbol}, price:${price}, orderId: ${data.orderId}\n`
+        );
         return data;
     } catch (e) {
         console.log(
