@@ -108,6 +108,7 @@ process.stdout.write('\x1Bc');
             console.log(`[GET INVEST...]`);
 
             const invest = machine.invests[step];
+            console.log(`Invest step is: ${step}`);
             console.log(`Invest is ${JSON.stringify(invest, null, 4)}\n`);
             step++;
 
@@ -197,7 +198,7 @@ process.stdout.write('\x1Bc');
                 const status = await cancelOrderById({
                     client,
                     pairSymbol: ETHBUSD,
-                    orderId: takeProfitOrder?.orderId || -1
+                    orderId: reinvest?.orderId || -1
                 });
                 break;
             }
