@@ -203,12 +203,6 @@ process.stdout.write('\x1Bc');
                 /*
                  * CANCEL REINVEST ORDER
                  */
-                if (machine.direction === Sell) {
-                }
-
-                /*
-                 * CANCEL REINVEST ORDER
-                 */
                 const status = await cancelOrderById({
                     client,
                     pairSymbol: ETHBUSD,
